@@ -1,4 +1,9 @@
+package com.calculator;
+
 import org.junit.Test;
+
+import com.calculator.SimpleCalculator;
+
 import static org.junit.Assert.*;
 
 public class SimpleCalculatorTest {
@@ -23,14 +28,16 @@ public class SimpleCalculatorTest {
 		assertEquals(-50, SimpleCalculator.multiply(-10, 5));
 	}
 
-	@Test
+	@Test()
 	public void testDivide() {
 		assertEquals(2.0, SimpleCalculator.divide(10, 5), 0.001);
 		assertEquals(-2.0, SimpleCalculator.divide(-10, 5), 0.001);
 		assertEquals(-1.0, SimpleCalculator.divide(10, -10), 0.001);
 		assertEquals(1.0, SimpleCalculator.divide(-10, -10), 0.001);
-		assertThrows(ArithmeticException.class, () -> {
-			SimpleCalculator.divide(10, 0);
-		});
+	}
+
+	@Test(expected = ArithmeticException.class)
+	public void testDivideByZero() {
+		SimpleCalculator.divide(10, 0);
 	}
 }
